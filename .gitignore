@@ -1,0 +1,9 @@
+.build
+.mbed
+projectfiles
+*.py*
+mbed-os
+BUILD
+
+mbed-mpu6050
+mbed-scope
