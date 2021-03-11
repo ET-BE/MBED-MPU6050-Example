@@ -23,6 +23,9 @@ int main()
         return 1; // Correct device was not found
     }
 
+    imu.setAScale(AFS_16G);
+    imu.setGScale(GFS_2000DPS);
+
     imu.reset(); // Reset registers to default in preparation for device calibration
     imu.calibrate(); // Calibrate gyro and accelerometers, load biases in bias registers
     imu.init();
