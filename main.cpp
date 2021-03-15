@@ -2,6 +2,9 @@
 #include "mbed-mpu6050/MPU6050.h"
 #include "mbed-scope/scope.h"
 
+DigitalOut led_blue(LED_BLUE, false); // Initialize on
+DigitalOut led_red(LED_RED, true); // Initialize off
+
 I2C i2c(I2C_SDA, I2C_SCL);
 MPU6050 imu(&i2c);
 Scope scope(6);
@@ -12,6 +15,8 @@ int main()
 {
     printf("Starting...\n\r");
 
+    led_blue = true; // Turn off now that the scope is connected
+
     i2c.frequency(400000); // 400 kHz
 
     ThisThread::sleep_for(200ms); // Let connection settle
@@ -20,7 +25,10 @@ int main()
 
     if (whoami != 0x68) {
         printf("Invalid device...\n\r");
+        led_red = false; // Turn on LED to show an error
         return 1; // Correct device was not found
+    } else {
+        led_red = true; // Turn off LED, no error
     }
 
     imu.setAScale(AFS_16G);
