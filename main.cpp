@@ -27,7 +27,7 @@ int main()
     imu.setGScale(GFS_2000DPS);
 
     imu.reset(); // Reset registers to default in preparation for device calibration
-    imu.calibrate(); // Calibrate gyro and accelerometers, load biases in bias registers
+    //imu.calibrate(); // Calibrate gyro and accelerometers, load biases in bias registers
     imu.init();
 
     float a[3] = {0.0f}, g[3] = {0.0f}, temp = 0.0f;
